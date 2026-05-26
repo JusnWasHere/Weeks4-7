@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Pivot : MonoBehaviour
 {
+
     void Start()
     {
 
@@ -11,6 +12,8 @@ public class Pivot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         Vector3 currentMousePosition = Mouse.current.position.ReadValue();
         Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(currentMousePosition);
         worldMousePosition.z = 0f;
