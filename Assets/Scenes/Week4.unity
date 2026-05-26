@@ -293,7 +293,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1300542943886331552, guid: 7438fe7e13cdbbd469268ebbf97ce37b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.66, y: 0.98}
@@ -514,6 +514,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 3
+  sprites: []
+  body: {fileID: 1034815482}
+  tracks: {fileID: 1075996742}
+  barrel: {fileID: 0}
+  flipped: 0
 --- !u!4 &2059462192
 Transform:
   m_ObjectHideFlags: 0
