@@ -220,6 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 391990984}
   - component: {fileID: 391990983}
+  - component: {fileID: 391990985}
   m_Layer: 0
   m_Name: Porkachu
   m_TagString: Untagged
@@ -301,6 +302,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &391990985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391990982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b393afb26210594196213d312d5ffa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hider
+  hidePosition: {x: 100, y: 0, z: 0}
 --- !u!1 &1135936932
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +621,7 @@ MonoBehaviour:
   creatureRenderer: {fileID: 391990983}
   gameCamera: {fileID: 1628836327}
   caughtColor: {r: 0.8962264, g: 0.35933605, b: 0.35933605, a: 1}
+  creatureHider: {fileID: 391990985}
   uncaughtCreatures:
   - {fileID: 391990983}
   - {fileID: 1135936933}
