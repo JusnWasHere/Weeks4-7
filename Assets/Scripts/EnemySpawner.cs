@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
         victory.enabled = false;
         for (int i = 0; i < 5; i++)
         {
-            Vector3 camPos = new Vector3(Random.Range(0.5f, 0.9f), Random.Range(0.5f, 0.9f), 0f);
+            Vector3 camPos = new Vector3(Random.Range(0.05f, 0.9f), Random.Range(0.05f, 0.9f), 0f);
             Vector3 spawnPos = Camera.main.ViewportToWorldPoint(camPos);
             spawnPos.z = 0f;
 
