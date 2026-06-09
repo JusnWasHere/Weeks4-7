@@ -1,17 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using TMPro;
 
-public class Enemy : MonoBehaviour
+public class Healthbar : MonoBehaviour
 {
-    SpriteRenderer body;
-    public TextMeshProUGUI healthDisplay;
-    public float health = 100f;
+    public Image healthbarFillImage;
+
+    public float currentHealth = 100f;
+    public float maxHealth = 100f;
+
+    public SpriteRenderer enemyRenderer;
+    public AudioSource damageSound;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        body = GetComponent<SpriteRenderer>();
         
     }
 
@@ -24,16 +26,16 @@ public class Enemy : MonoBehaviour
 
         bool click = Mouse.current.leftButton.wasPressedThisFrame;
 
-        if (click&&body.bounds.Contains(worldMousePosition))
+        if (click && enemyRenderer.bounds.Contains(worldMousePosition))
         {
-            health -= 10f;
+            damageSound.Play();
+            currentHealth -= 10f;
+            if(currentHealth <= 0f)
+            {
+                enemyRenderer.gameObject.SetActive(false);
+            }
+            healthbarFillImage.fillAmount = currentHealth / maxHealth;
         }
-
-        healthDisplay.text = health.ToString();
-
-        if (health <= 0f)
-            Destroy(gameObject);
-
 
 
     }
