@@ -26,8 +26,6 @@ public class Player : MonoBehaviour
         {
             emotes[i].enabled = false;
         }
-
-        
     }
 
     // Update is called once per frame

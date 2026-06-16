@@ -35,6 +35,7 @@ public class Music : MonoBehaviour
     public void OnStopClick()
     {
         music.Stop();
+        Playing = false;
 
     }
 }
