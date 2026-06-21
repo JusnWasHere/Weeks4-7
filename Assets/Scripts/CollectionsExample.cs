@@ -23,7 +23,7 @@ public class CollectionsExample : MonoBehaviour
             Debug.Log(animal);
         }
 
-        Vector3 position = new Vector3();
+        //Vector3 position = new Vector3();
         Color gray = new Color(0.5f, 0.5f, 0.5f, 1f);
         gray.b = 0.75f;
         sprite.color = gray;
