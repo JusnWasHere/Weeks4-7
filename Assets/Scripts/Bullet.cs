@@ -19,12 +19,11 @@ public class Bullet : MonoBehaviour
     {
         transform.position += direction * speed * Time.deltaTime;
         position = Camera.main.WorldToScreenPoint(transform.position);
-
-        if (position.x > Screen.width || position.y > Screen.height)
+        if (Mathf.Abs(position.x) > Screen.width || Mathf.Abs(position.y) > Screen.height)
         {
             Destroy(gameObject);
             //Debug.Log("out of bounds");
         }
-        
+
     }
 }

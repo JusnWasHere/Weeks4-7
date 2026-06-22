@@ -4,12 +4,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Turret : MonoBehaviour
 {
     public float speed;
 
     Vector3 currentRotation;
+
+
 
     public GameObject bullet;
     public Bullet bulletScript;
@@ -19,6 +22,17 @@ public class Turret : MonoBehaviour
     public int killCount = 0;
     public TMP_Text killCountText;
 
+    float timer = 120;
+    public TMP_Text timerUI;
+
+    //public Image rightButton;
+    //public Image leftButton;
+
+    //public bool turningLeft;
+    //public bool turningRight;
+
+    public bool fire;
+
     private void Start()
     {
         
@@ -26,9 +40,28 @@ public class Turret : MonoBehaviour
 
     void Update()
     {
-        bool turningRight = Keyboard.current.rightArrowKey.isPressed;
-        bool turningLeft = Keyboard.current.leftArrowKey.isPressed;
-        bool fire = Keyboard.current.spaceKey.wasPressedThisFrame;
+        /*
+        //bool turningRight = Keyboard.current.rightArrowKey.isPressed;
+        //bool turningLeft = Keyboard.current.leftArrowKey.isPressed;
+        bool mousePressed = Mouse.current.leftButton.isPressed;
+        Vector3 currentMousePosition = Mouse.current.position.ReadValue();
+        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(currentMousePosition);
+        worldMousePosition.z = 0f;
+
+        
+        if (mousePressed && rightButton.bounds.Contains(worldMousePosition))
+        {
+            turningRight = true;
+        }
+        if (mousePressed && leftButton.bounds.Contains(worldMousePosition))
+        {
+            turningLeft = true;
+        }
+        */
+        bool turningRight = Keyboard.current.dKey.isPressed;
+        bool turningLeft = Keyboard.current.aKey.isPressed;
+        //bool fire = Keyboard.current.spaceKey.wasPressedThisFrame;
+
 
         if (turningRight)
         {
@@ -46,6 +79,8 @@ public class Turret : MonoBehaviour
             bulletScript = newBullet.GetComponent<Bullet>();
             bulletScript.turret = gameObject;
             bullets.Add(newBullet);
+            fire = false;
+
 
         }
 
@@ -53,11 +88,42 @@ public class Turret : MonoBehaviour
         {
             if (bullets[i] == null)
                 bullets.RemoveAt(i);
+            
         }
 
+       
+
         killCountText.text = "Kills: " + killCount;
+
+        timer -= Time.deltaTime;
+        int minutes = Mathf.FloorToInt(timer / 60F);
+        int seconds = Mathf.FloorToInt(timer - minutes * 60);
+        string timeText = string.Format("{0:0}:{1:00}", minutes, seconds);
+        timerUI.text = timeText;
 
 
         transform.eulerAngles = currentRotation;
     }
+
+    public void fireClick()
+    {
+        fire = true;
+
+    }
+
+    /*
+    public void clickingRight()
+    {
+        turningRight = !turningRight;
+
+    }
+
+    public void clickingLeft()
+    {
+        turningLeft = !turningLeft;
+
+    }
+    */
+
+
 }

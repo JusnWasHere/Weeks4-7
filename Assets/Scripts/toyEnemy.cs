@@ -44,7 +44,7 @@ public class toyEnemy : MonoBehaviour
             {
                 if (tEnemy.bounds.Contains(bullet.transform.position))
                 {
-                    Debug.Log("hit");
+                    //Debug.Log("hit");
                     Destroy(bullet);
                     currentHealth -= 25;
                 }

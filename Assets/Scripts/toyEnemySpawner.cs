@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class toyEnemySpawner : MonoBehaviour
@@ -6,10 +7,17 @@ public class toyEnemySpawner : MonoBehaviour
     Vector3 spawnPosition;
     public GameObject enemyPrefab;
 
-    public float duration;
+    public float duration = 10f;
     public float progress;
 
     public toyEnemy enemy;
+
+    public SpriteRenderer barrelSprite;
+    public SpriteRenderer turretSprite;
+
+    public TMP_Text difficultyText;
+
+    public float c;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,8 +43,8 @@ public class toyEnemySpawner : MonoBehaviour
         //left side
         if (side == 0)
         {
-            spawnPosition.x = -10f;
-            spawnPosition.y = Random.Range(-6f, 6f);
+            spawnPosition.x = -17f;
+            spawnPosition.y = Random.Range(-11f, 11f);
             spawnPosition.z = 0f;
             GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             enemy = spawnedEnemy.GetComponent<toyEnemy>();
@@ -46,8 +54,8 @@ public class toyEnemySpawner : MonoBehaviour
         //top side
         else if (side == 1)
         {
-            spawnPosition.x = Random.Range(-10f, 10f);
-            spawnPosition.y = 10f;
+            spawnPosition.x = Random.Range(-17f, 17f);
+            spawnPosition.y = 11f;
             spawnPosition.z = 0f;
             GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             enemy = spawnedEnemy.GetComponent<toyEnemy>();
@@ -57,8 +65,8 @@ public class toyEnemySpawner : MonoBehaviour
         //right side
         else if (side == 2)
         {
-            spawnPosition.x = 10f;
-            spawnPosition.y = Random.Range(-6f, 6f);
+            spawnPosition.x = 17f;
+            spawnPosition.y = Random.Range(-11f, 11f);
             spawnPosition.z = 0f;
             GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             enemy = spawnedEnemy.GetComponent<toyEnemy>();
@@ -68,8 +76,8 @@ public class toyEnemySpawner : MonoBehaviour
         //bottom side
         else if (side == 3)
         {
-            spawnPosition.x = Random.Range(-10f, 10f);
-            spawnPosition.y = -10f;
+            spawnPosition.x = Random.Range(-17f, 17f);
+            spawnPosition.y = -11f;
             spawnPosition.z = 0f;
             GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             enemy = spawnedEnemy.GetComponent<toyEnemy>();
@@ -77,6 +85,25 @@ public class toyEnemySpawner : MonoBehaviour
 
 
         }
+
+        
+
+
+
+
+    }
+
+    public void OnSliderChange(float spawnInterval)
+    {
+        duration = 10-spawnInterval;
+        difficultyText.text = ("Difficulty: " + spawnInterval);
+        //Debug.Log(spawnInterval);
+        c=spawnInterval/10f;
+        turretSprite.color = new Color(c, 0.1f, 0.1f);
+        barrelSprite.color = new Color(c, 0.1f, 0.1f);
+        Debug.Log(c);
+
+        
 
     }
 }
