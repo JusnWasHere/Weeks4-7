@@ -16,8 +16,8 @@ public class ToyManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //LossScreen.enabled = false;
-        //winScreen.enabled = false;
+        LossScreen.enabled = false;
+        winScreen.enabled = false;
 
 
     }
@@ -28,22 +28,28 @@ public class ToyManager : MonoBehaviour
         if(turretScript.currentHealth <= 0)
         {
             turret.SetActive(false);
-            LossScreen.gameObject.SetActive(true);
-            //battleUI.enabled = false;
-            //LossScreen.enabled = true;
-            battleUI.gameObject.SetActive(false);
-            spawner.destroyEnemies = true;
+            battleUI.enabled = false;
+            LossScreen.enabled = true;
+            for (int i = 0; i < spawner.enemies.Count; i++)
+            {
+                Destroy(spawner.enemies[i]);
+                spawner.enemies.RemoveAt(i);
+            }
+
 
         }
 
         if(turretScript.timer <= 0)
         {
             turret.SetActive(false);
-            battleUI.gameObject.SetActive(false);
-            winScreen.gameObject.SetActive(true);
-            //battleUI.enabled = false;
-            //winScreen.enabled = true;
-            spawner.destroyEnemies = true;
+            battleUI.enabled = false;
+            winScreen.enabled = true;
+            for (int i = 0; i < spawner.enemies.Count; i++)
+            {
+                Destroy(spawner.enemies[i]);
+                spawner.enemies.RemoveAt(i);
+            }
+
 
         }
         
@@ -56,7 +62,10 @@ public class ToyManager : MonoBehaviour
         battleUI.enabled = true;
         turretScript.timer = 120;
         turretScript.killCount = 0;
-  
+        LossScreen.enabled = false;
+        winScreen.enabled = false;
+        spawner.destroyEnemies = true;
+
 
     }
 }

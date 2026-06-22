@@ -22,6 +22,7 @@ public class toyEnemySpawner : MonoBehaviour
 
     public bool destroyEnemies;
 
+
     public List<GameObject> enemies;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,19 +37,22 @@ public class toyEnemySpawner : MonoBehaviour
         progress += 1 * Time.deltaTime;
         if(progress >= duration)
         {
+           
             SpawnEnemy();
-            progress = 0;
+            progress = 0; 
         }
 
+        /*
         if(destroyEnemies)
         {
-            foreach(GameObject enemy in enemies)
+            for (int i = 0; i < enemies.Count; i++)
             {
-                Destroy(gameObject);
+                Destroy(enemies[i]);
+                enemies.RemoveAt(i);
             }
             destroyEnemies = false;
         }
-        
+        */
     }
 
     public void SpawnEnemy()
@@ -103,11 +107,6 @@ public class toyEnemySpawner : MonoBehaviour
 
 
         }
-
-        
-
-
-
 
     }
 
