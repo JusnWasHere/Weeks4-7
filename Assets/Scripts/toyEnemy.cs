@@ -35,6 +35,7 @@ public class toyEnemy : MonoBehaviour
 
         if (distance <= 0.1f)
         {
+            turretScript.currentHealth -= 10f;
             Destroy(gameObject);
         }
 

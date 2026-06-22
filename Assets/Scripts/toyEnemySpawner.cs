@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class toyEnemySpawner : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class toyEnemySpawner : MonoBehaviour
     public TMP_Text difficultyText;
 
     public float c;
+
+    public bool destroyEnemies;
+
+    public List<GameObject> enemies;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,6 +39,15 @@ public class toyEnemySpawner : MonoBehaviour
             SpawnEnemy();
             progress = 0;
         }
+
+        if(destroyEnemies)
+        {
+            foreach(GameObject enemy in enemies)
+            {
+                Destroy(gameObject);
+            }
+            destroyEnemies = false;
+        }
         
     }
 
@@ -49,6 +63,7 @@ public class toyEnemySpawner : MonoBehaviour
             GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             enemy = spawnedEnemy.GetComponent<toyEnemy>();
             enemy.turretScript = GetComponent<Turret>();
+            enemies.Add(spawnedEnemy);
         }
 
         //top side
@@ -60,6 +75,7 @@ public class toyEnemySpawner : MonoBehaviour
             GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             enemy = spawnedEnemy.GetComponent<toyEnemy>();
             enemy.turretScript = GetComponent<Turret>();
+            enemies.Add(spawnedEnemy);
 
         }
         //right side
@@ -71,6 +87,7 @@ public class toyEnemySpawner : MonoBehaviour
             GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             enemy = spawnedEnemy.GetComponent<toyEnemy>();
             enemy.turretScript = GetComponent<Turret>();
+            enemies.Add(spawnedEnemy);
 
         }
         //bottom side
@@ -82,6 +99,7 @@ public class toyEnemySpawner : MonoBehaviour
             GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             enemy = spawnedEnemy.GetComponent<toyEnemy>();
             enemy.turretScript = GetComponent<Turret>();
+            enemies.Add(spawnedEnemy);
 
 
         }
@@ -101,7 +119,7 @@ public class toyEnemySpawner : MonoBehaviour
         c=spawnInterval/10f;
         turretSprite.color = new Color(c, 0.1f, 0.1f);
         barrelSprite.color = new Color(c, 0.1f, 0.1f);
-        Debug.Log(c);
+        //Debug.Log(c);
 
         
 

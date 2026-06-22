@@ -4,7 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class Turret : MonoBehaviour
 {
@@ -12,18 +11,25 @@ public class Turret : MonoBehaviour
 
     Vector3 currentRotation;
 
-
+    public float currentHealth = 100f;
+    public float maxHealth = 100f;
+    public Image healthBar;
 
     public GameObject bullet;
     public Bullet bulletScript;
+
 
     public List<GameObject> bullets;
 
     public int killCount = 0;
     public TMP_Text killCountText;
+    public TMP_Text killCountText2;
+    public TMP_Text killCountText3;
 
-    float timer = 120;
+    public float timer = 120;
     public TMP_Text timerUI;
+
+  
 
     //public Image rightButton;
     //public Image leftButton;
@@ -94,6 +100,8 @@ public class Turret : MonoBehaviour
        
 
         killCountText.text = "Kills: " + killCount;
+        killCountText2.text = "Kills: " + killCount;
+        killCountText3.text = "Kills: " + killCount;
 
         timer -= Time.deltaTime;
         int minutes = Mathf.FloorToInt(timer / 60F);
@@ -103,14 +111,16 @@ public class Turret : MonoBehaviour
 
 
         transform.eulerAngles = currentRotation;
+
+        healthBar.fillAmount = currentHealth / maxHealth;
     }
 
     public void fireClick()
     {
         fire = true;
 
-    }
 
+    }
     /*
     public void clickingRight()
     {
