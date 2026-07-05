@@ -53,6 +53,14 @@ public class toyEnemySpawner : MonoBehaviour
             destroyEnemies = false;
         }
         */
+
+
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (enemies[i] == null)
+                enemies.RemoveAt(i);
+
+        }
     }
 
     public void SpawnEnemy()
